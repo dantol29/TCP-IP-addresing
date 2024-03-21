@@ -1,40 +1,57 @@
 # TCP/IP addresing
 
-## 1. Network
+## Network
 
-How do I know if two devices are part of the same network?
+<b>How to determine the range of usable IP addresses?</b>
 
-For this you need to combine the IP-address and the mask of the devices in order to get the network-adress, that device is part of.
+1. Identify the Subnet Mask.
+2. Identify the Network Address
+3. Identify the Broadcast Address
+4. Determine the Range of Usable IP Addresses
+5. Identify Special Addresses
 
-Combine means bit-by-bit-AND-opperation.
+## 1. Identify the Subnet Mask
+The subnet mask is <b>used to divide IP address</b> into network and host portions. The network portion ensures that data packets reach the right network, while the host portion identifies a specific device on that network.
 
-Here are the steps:
-1. translate the IP and the mask to binary
+An example: `255.255.255.0`
 
-IP: `192.168.100.1` in binary: `11000000.10101000.1100100.00000001`
+## 2. Identify the Network Address
+The network address is obtained by performing a <b>bitwise AND operation</b> between the IP address and the subnet mask.
 
-MASK: `255.255.255.0` in binary: `11111111.11111111.11111111.00000000`
+For example, if the IP address is `192.168.1.100` and the subnet mask is `255.255.255.0`, the network address would be `192.168.1.0`.
 
-2. Combine the two bit by bit
+## 3. Identify the Broadcast Address
+The broadcast address is the highest address in the subnet. It's obtained by <b>setting all host bits to 1</b> within the network portion of the IP address. 
+
+For example, if the subnet mask is `255.255.255.0`, the broadcast address for the network `192.168.1.0` would be `192.168.1.255`.
+
+## 4. Determine the Range of Usable IP Addresses
+
+These are the addresses between the network and broadcast addresses, excluding those addresses. 
+
+For example, if the network address is `192.168.1.0` and the broadcast address is `192.168.1.255`, the usable IP addresses in this subnet would be from `192.168.1.1` to `192.168.1.254`.
+
+## 5. Identify Special Addresses
+Some special addresses are reserved within each subnet. These include the <b>network address</b> (the first address in the subnet) and the <b>broadcast address</b> (the last address in the subnet). 
+
+Additionally, there might be other addresses reserved for specific purposes, such as the default gateway and DNS servers.
 
 
-`11000000.10101000.1100100.00000000` in binary or `192.168.100.0` in dot-decimal.
-
-## 1. Special IP-ranges
+## 6. Special IP-ranges
 The following special address-ranges are reserved for Private Networks:
 
-10.0.0.0 – 10.255.255.255
+`10.0.0.0` – `10.255.255.255`
 
-172.16.0.0 – 172.31.255.255
+`172.16.0.0` – `172.31.255.255`
 
-192.168.0.0 – 192.168.255.255
+`192.168.0.0` – `192.168.255.255`
 
 
 The following address-range is reserved for so called loopback addresses:
 
-127.0.0.0 – 127.255.255.255
+`127.0.0.0 – 127.255.255.255`
 
-## 2. IP addresses
+## IP addresses
 
 An IP address is a <b>32-bit number</b>. It identifies a host on a TCP/IP network.
 
@@ -42,15 +59,11 @@ IP addresses are normally expressed in dotted-decimal format, with four numbers 
 
 An IP address <b>has two parts</b>:
 
-1. The first part is a _network adress_ (192.168.123.0)
+1. The first part is a _network adress_ (`192.168.123.0`)
 
-2. The second part is a _host address_ (000.000.000.132)
+2. The second part is a _host address_ (`000.000.000.132`)
 
 To understand how subnet masks are used, examine an IP address in binary notation.
-IP address 192.168.123.132 in binary notation is 11000000.10101000.01111011.10000100.
 
-## 3. Subnet mask
+IP address `192.168.123.132` in binary notation is `11000000.10101000.01111011.10000100`.
 
-The subnet mask is <b>used to divide IP address</b> into network and host portions. The network portion ensures that data packets reach the right network, while the host portion identifies a specific device on that network.
-
-An example: _255.255.255.0_
